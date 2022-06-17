@@ -1,5 +1,6 @@
 import http from 'http';
 import dotenv from 'dotenv';
+import { router } from './router';
 
 dotenv.config();
 
@@ -9,7 +10,7 @@ export class App {
 
   constructor() {
     this.PORT = process.env.PORT || 5000;
-    this.server = http.createServer();
+    this.server = http.createServer(router);
   }
 
   init = () => {
