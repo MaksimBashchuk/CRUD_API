@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { IUser } from './models';
+import { IUser } from '../models';
 
 export const db: IUser[] = [
   { id: v4(), username: 'Maksim', age: 30, hobbies: [] },
