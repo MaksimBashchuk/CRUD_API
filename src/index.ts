@@ -1,3 +1,4 @@
-import { test } from './app';
+import { App } from './app';
 
-test();
+const app = new App();
+app.init();
