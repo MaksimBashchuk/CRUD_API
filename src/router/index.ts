@@ -1,19 +1,19 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import {} from 'constants';
 import { MESSAGES, USERS_URL } from '../constants';
 import { sendErrorResponse } from '../utils';
+import { handleUsersRoute, handleSpecificUserRoutes } from '../handlers';
 
 export const router = (req: IncomingMessage, res: ServerResponse) => {
   try {
     const { url } = req;
 
     if (url === USERS_URL || url === `${USERS_URL}/`) {
-      // handleUsersRoute();
+      handleUsersRoute(req, res);
       return;
     }
 
     if (url?.match(/\/users\/\w+/)) {
-      // handleSpecificUserRoutes();
+      handleSpecificUserRoutes();
       return;
     }
 
