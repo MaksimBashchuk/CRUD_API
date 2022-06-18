@@ -13,6 +13,7 @@ export const handleUsersRoute = async (req: IncomingMessage, res: ServerResponse
         const users = getAllUsers();
         sendSuccessResponse(res, 200, users);
         break;
+
       case METHODS.POST:
         const body = await getReqBody<ReqBodyUser>(req);
 
@@ -24,6 +25,7 @@ export const handleUsersRoute = async (req: IncomingMessage, res: ServerResponse
         const newUser = addNewUser(body);
         sendSuccessResponse(res, 201, newUser);
         break;
+
       default:
         sendErrorResponse(res, 405, MESSAGES.WRONG_METHOD);
         break;

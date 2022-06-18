@@ -13,7 +13,7 @@ export const router = (req: IncomingMessage, res: ServerResponse) => {
     }
 
     if (url?.match(/\/users\/\w+/)) {
-      handleSpecificUserRoutes();
+      handleSpecificUserRoutes(req, res);
       return;
     }
 

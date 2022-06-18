@@ -1,8 +1,11 @@
-export const USERS_URL = `/api/users`;
+export const USERS_URL = '/api/users';
+export const REPLACE_TOKEN = '/token/';
 
 export const MESSAGES = {
   REQUIRED_FIELDS: 'Request body should contain required fields',
-  PERSON_NOT_FOUND: 'User Not Found',
+  PARTIALLY_REQUIRED_FIELDS: 'Request body should contain at least one of the required fields',
+  DELETED: 'User was successfully deleted',
+  USER_NOT_FOUND: `User with id='${REPLACE_TOKEN}' does not exist`,
   INVALID_UUID: 'Invalid UserId. Not uuid',
   NOT_FOUND: 'Please check if URL is correct',
   WRONG_METHOD: 'Current endpoint does not support this method',

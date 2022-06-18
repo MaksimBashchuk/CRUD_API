@@ -1,6 +1,6 @@
 import { ServerResponse, IncomingMessage, STATUS_CODES } from 'http';
 import { REQUIRED_FIELDS } from '../constants';
-import { IUser, ReqBodyUser } from '../models';
+import { IUser, OptionalReqBodyUser, ReqBodyUser } from '../models';
 
 export const sendErrorResponse = (res: ServerResponse, statusCode: number, msg: string) => {
   const message = `${STATUS_CODES[statusCode]}: ${msg}`;
@@ -17,7 +17,7 @@ export const sendSuccessResponse = (
   res.end(JSON.stringify(body));
 };
 
-export const parseIdFromUrl = (url: string) => url?.split('user/')[1];
+export const parseIdFromUrl = (url: string) => url?.split('users/')[1];
 
 export const getReqBody = <T>(req: IncomingMessage): Promise<T> =>
   new Promise((resolve, reject) => {
@@ -41,4 +41,5 @@ export const getReqBody = <T>(req: IncomingMessage): Promise<T> =>
 export const isValidPostBody = (body: ReqBodyUser) =>
   REQUIRED_FIELDS.every((item) => body[item as keyof ReqBodyUser]);
 
-export const isValidUpdateBody = () => {};
+export const isValidUpdateBody = (body: OptionalReqBodyUser) =>
+  REQUIRED_FIELDS.some((item) => body[item as keyof OptionalReqBodyUser]);
