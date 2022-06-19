@@ -39,7 +39,7 @@
     - `username` - type `string`
     - `age` - type `number`
     - `hobbies` - type `string[]` (array of strings) or `[]` (empty array)
-      Example:
+      **Example:**
     ```javascript
     // Original object
     { username: 'name', age: 30, hobbies: ['football'] }
