@@ -16,6 +16,11 @@ export class App {
   init = () => {
     this.server.listen(this.PORT, () => {
       console.log(`Server started on port: ${this.PORT}!`);
+      console.log(`Started process ${process.pid}`);
+    });
+
+    this.server.on('request', () => {
+      console.log(`Request handled by process ${process.pid}`);
     });
   };
 }

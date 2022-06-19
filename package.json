@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start:prod": "webpack && node ./dist/bundle.js",
-    "start:dev": "nodemon ./src/index.ts"
+    "start:dev": "nodemon ./src/index.ts",
+    "multi": "nodemon ./src/cluster.ts"
   },
   "keywords": [],
   "author": "",
