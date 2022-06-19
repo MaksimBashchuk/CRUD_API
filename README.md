@@ -17,6 +17,7 @@
 
 - To start application in development mode run command `npm run start:dev`. It will runs application with nodemon and ts-node without compilation.
 - To start application in production mode run command `npm run start:prod`. It will compile all `ts` files into `./dist/bundle.js` and run it with `NODE`.
+- Run `npm run multi` to spawn several instances of application according to number of your system CPUs.
 - To run test use `npm run test`.
 
 ### Implementation details
