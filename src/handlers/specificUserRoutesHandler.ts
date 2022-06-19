@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { validate } from 'uuid';
 import { METHODS, MESSAGES, REPLACE_TOKEN } from '../constants';
-import { OptionalReqBodyUser } from '../models';
+import { IUser, OptionalReqBodyUser } from '../models';
 import { getUserById, deleteUser, updateUser } from '../service';
 import {
   sendSuccessResponse,
@@ -32,6 +32,11 @@ export const handleSpecificUserRoutes = async (req: IncomingMessage, res: Server
 
       case METHODS.PUT:
         const body = await getReqBody<OptionalReqBodyUser>(req);
+
+        if ((<IUser>body).id) {
+          sendErrorResponse(res, 400, MESSAGES.ID_UPDATE);
+          break;
+        }
 
         if (!isValidUpdateBody(body)) {
           sendErrorResponse(res, 400, MESSAGES.PARTIALLY_REQUIRED_FIELDS);

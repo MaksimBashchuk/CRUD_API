@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { MESSAGES, METHODS } from '../constants';
-import { ReqBodyUser } from '../models';
+import { IUser, ReqBodyUser } from '../models';
 import { addNewUser, getAllUsers } from '../service';
 import { getReqBody, isValidPostBody, sendErrorResponse, sendSuccessResponse } from '../utils';
 
@@ -16,6 +16,11 @@ export const handleUsersRoute = async (req: IncomingMessage, res: ServerResponse
 
       case METHODS.POST:
         const body = await getReqBody<ReqBodyUser>(req);
+
+        if ((<IUser>body).id) {
+          sendErrorResponse(res, 400, MESSAGES.ID_UPDATE);
+          break;
+        }
 
         if (!isValidPostBody(body)) {
           sendErrorResponse(res, 400, MESSAGES.REQUIRED_FIELDS);

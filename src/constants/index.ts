@@ -11,6 +11,7 @@ export const MESSAGES = {
   WRONG_METHOD: 'Current endpoint does not support this method',
   INTERNAL_ERROR: 'Internal server error occurred!',
   INVALID_JSON: 'Invalid body format. Use JSON format.',
+  ID_UPDATE: 'Please do not change or create id manually. It generates on server side.',
 };
 
 export const METHODS = {
