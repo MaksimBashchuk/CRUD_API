@@ -16,7 +16,12 @@ export const addNewUser = (reqBody: ReqBodyUser) => {
 };
 
 export const updateUser = (user: IUser, reqBody: OptionalReqBodyUser) => {
-  return Object.assign(user, reqBody);
+  const mergedHobbies = reqBody.hobbies ? [...user.hobbies, ...reqBody.hobbies] : user.hobbies;
+  const objToMerge = {
+    ...reqBody,
+    hobbies: mergedHobbies,
+  };
+  return Object.assign(user, objToMerge);
 };
 
 export const deleteUser = (id: string) => {

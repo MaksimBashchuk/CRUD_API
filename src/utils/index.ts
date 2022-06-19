@@ -39,7 +39,26 @@ export const getReqBody = <T>(req: IncomingMessage): Promise<T> =>
   });
 
 export const isValidPostBody = (body: ReqBodyUser) =>
-  REQUIRED_FIELDS.every((item) => body[item as keyof ReqBodyUser]);
+  Object.values(REQUIRED_FIELDS).every((item) => body[item as keyof ReqBodyUser]) &&
+  checkRequiredFieldsType(body);
 
 export const isValidUpdateBody = (body: OptionalReqBodyUser) =>
-  REQUIRED_FIELDS.some((item) => body[item as keyof OptionalReqBodyUser]);
+  Object.values(REQUIRED_FIELDS).some((item) => body[item as keyof OptionalReqBodyUser]) &&
+  checkRequiredFieldsType(body);
+
+const checkRequiredFieldsType = (userObject: OptionalReqBodyUser) => {
+  return Object.entries(userObject).every(([key, value]) => {
+    switch (key) {
+      case REQUIRED_FIELDS.USERNAME:
+        return typeof value === 'string';
+      case REQUIRED_FIELDS.AGE:
+        return typeof value === 'number';
+      case REQUIRED_FIELDS.HOBBIES:
+        return Array.isArray(value) && value.length
+          ? value.every((item) => typeof item === 'string')
+          : true;
+      default:
+        return true;
+    }
+  });
+};

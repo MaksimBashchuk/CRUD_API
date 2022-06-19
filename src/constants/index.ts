@@ -22,4 +22,4 @@ export const METHODS = {
   OPTIONS: 'OPTIONS',
 };
 
-export const REQUIRED_FIELDS = ['username', 'age', 'hobbies'];
+export const REQUIRED_FIELDS = { USERNAME: 'username', AGE: 'age', HOBBIES: 'hobbies' };
